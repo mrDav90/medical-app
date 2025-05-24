@@ -7,6 +7,7 @@ import { ClassesComponent } from './business/classes/classes.component';
 import { canActivateAuthRole } from './auth/guard/auth.guard';
 import { RolesComponent } from './business/roles/roles.component';
 import { UsersComponent } from './business/users/users.component';
+import { PatientsComponent } from './business/patients/patients.component';
 
 export const routes: Routes = [
   {
@@ -87,6 +88,13 @@ export const routes: Routes = [
         component: ClassesComponent,
         data: {
           breadcrumb: 'Classes',
+        },
+      },
+      {
+        path: 'patients',
+        component: PatientsComponent,
+        data: {
+          breadcrumb: 'Liste des patients',
         },
       },
       {
