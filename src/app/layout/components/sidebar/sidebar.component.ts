@@ -1,10 +1,11 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, Input } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { CaslService } from '../../../shared/services/casl/casl.service';
+import { RESOURCES } from '../../../shared/constants/resources.constants';
+import { SCOPES } from '../../../shared/constants/scopes.constants';
 
 export interface MenuItem {
   key?: string;
@@ -29,34 +30,16 @@ export class SidebarComponent {
 
   rawMenuItems: MenuItem[] = [
     {
-      key: 'dashboard',
+      key: RESOURCES.DASHBOARD,
       title: 'Tableau de bord',
       icon: 'dashboard',
       route: '/dashboard',
     },
     {
-      key: 'patient',
+      key: RESOURCES.PATIENT,
       title: 'Patients',
       icon: 'user',
       route: '/patients',
-    },
-    {
-      key: 'students',
-      title: 'Etudiants',
-      icon: 'user',
-      route: '/students',
-    },
-    {
-      key: 'courses',
-      title: 'Cours',
-      icon: 'book',
-      route: '/courses',
-    },
-    {
-      key: 'classes',
-      title: 'Classes',
-      icon: 'appstore',
-      route: '/classes',
     },
     {
       title: 'Paramètres',
@@ -78,13 +61,13 @@ export class SidebarComponent {
       ],
     },
     {
-      key: 'account',
+      key: RESOURCES.ACCOUNT,
       title: 'Comptes utilisateurs',
       icon: 'team',
       route: '/users',
     },
     {
-      key: 'app_role',
+      key: RESOURCES.ROLES,
       title: 'Rôles',
       icon: 'safety',
       route: '/roles',
@@ -99,7 +82,7 @@ export class SidebarComponent {
       if (element.group) {
         let tempGroup : MenuItem[] = [];
         element.group.forEach(elt2 => {
-          if (this.can('read', elt2.key!)) {
+          if (this.can(SCOPES.READ, elt2.key!)) {
             tempGroup.push(elt2);
           }
         });
@@ -108,7 +91,7 @@ export class SidebarComponent {
           tempMenu.push(element);
         }
       }else{
-        if (this.can('read', element.key!)) {
+        if (this.can(SCOPES.READ, element.key!)) {
           tempMenu.push(element);
         }
       }

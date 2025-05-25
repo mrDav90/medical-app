@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideKeycloak({
       config: {
-        url: 'http://localhost:8080',
+        url: 'http://localhost:9080',
         realm: 'admin-management-system',
         clientId: 'admin-management-front-client'
       },

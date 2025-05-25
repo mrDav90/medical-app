@@ -3,7 +3,7 @@
   <div style="display: flex; align-items: center; gap: 10px">
     <app-search-bar></app-search-bar>
     <app-reload-button (_onRefresh)="onRefresh()"></app-reload-button>
-    @if (can('create', 'patient')) {
+    @if (can(SCOPES.CREATE, RESOURCES.PATIENT)) {
       <button nz-button [nzType]="'primary'" (click)="onAdd()">
         <span>Ajouter</span>
       </button>
@@ -64,7 +64,7 @@
       <td>{{ data.gender }}</td>
       <td>{{ data.phoneNumber }}</td>
       <td>
-        @if (can('update', 'patient')) {
+        @if (can(SCOPES.UPDATE, RESOURCES.PATIENT)) {
         <button
           nz-button
           [nzType]="'text'"
@@ -73,7 +73,7 @@
         >
           <nz-icon nzType="edit" />
         </button>
-        } &nbsp; @if (can('delete', 'patient')) {
+        } &nbsp; @if (can(SCOPES.DELETE, RESOURCES.PATIENT)) {
         <button
           nz-button
           [nzType]="'text'"

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { PaginatedResponse } from '../../shared/models/paginated-response';
-import { PermissionItem } from './models/permission-item';
 import { AssignPermission } from './models/assign-permission';
 import { AppPermission } from './models/app-permission';
 

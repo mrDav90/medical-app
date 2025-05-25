@@ -15,6 +15,8 @@ import { RolesService } from './roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddPermissionsComponent } from './add-permissions/add-permissions.component';
 import { CaslService } from '../../shared/services/casl/casl.service';
+import { RESOURCES } from '../../shared/constants/resources.constants';
+import { SCOPES } from '../../shared/constants/scopes.constants';
 
 @Component({
   selector: 'app-roles',
@@ -36,6 +38,8 @@ import { CaslService } from '../../shared/services/casl/casl.service';
   styleUrl: './roles.component.css',
 })
 export class RolesComponent implements OnInit {
+  RESOURCES = RESOURCES;
+  SCOPES = SCOPES;
   loading = false;
   open = false;
   openPermissionsModal = false;
