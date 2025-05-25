@@ -14,6 +14,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { CaslService } from '../../shared/services/casl/casl.service';
+import { RESOURCES } from '../../shared/constants/resources.constants';
+import { SCOPES } from '../../shared/constants/scopes.constants';
 
 @Component({
   selector: 'app-users',
@@ -34,6 +36,8 @@ import { CaslService } from '../../shared/services/casl/casl.service';
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
+  RESOURCES = RESOURCES;
+  SCOPES = SCOPES;
   loading = false;
   open = false;
   listUsers: UserResponse[] = [];

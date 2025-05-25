@@ -13,6 +13,8 @@ import { CaslService } from '../../shared/services/casl/casl.service';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReloadButtonComponent } from '../../shared/components/reload-button/reload-button.component';
 import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
+import { RESOURCES } from '../../shared/constants/resources.constants';
+import { SCOPES } from '../../shared/constants/scopes.constants';
 
 @Component({
   selector: 'app-patients',
@@ -33,6 +35,8 @@ import { SearchBarComponent } from '../../shared/components/search-bar/search-ba
   styleUrl: './patients.component.css',
 })
 export class PatientsComponent implements OnInit {
+  RESOURCES = RESOURCES;
+  SCOPES = SCOPES;
   loading = false;
   open = false;
   listPatients: PatientResponse[] = [];
