@@ -42,6 +42,12 @@ export class SidebarComponent {
       route: '/patients',
     },
     {
+      key: RESOURCES.STAFF,
+      title: 'Medecin',
+      icon: 'team',
+      route: '/doctors',
+    },
+    {
       title: 'Paramètres',
       icon: 'settings',
       route: '/settings',
