@@ -16,6 +16,7 @@
 *.sublime-project
 
 # Compiled output
+!extra-webpack.config.js
 *.js
 *.d.ts
 *.map
