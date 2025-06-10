@@ -48,6 +48,12 @@ export class SidebarComponent {
       route: '/doctors',
     },
     {
+      key: RESOURCES.APPOINTMENT,
+      title: 'Rendez-vous',
+      icon: 'team',
+      route: '/appointments',
+    },
+    {
       title: 'Paramètres',
       icon: 'settings',
       route: '/settings',
