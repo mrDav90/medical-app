@@ -6,6 +6,7 @@ import { RolesComponent } from './business/roles/roles.component';
 import { UsersComponent } from './business/users/users.component';
 import { PatientsComponent } from './business/patients/patients.component';
 import { DoctorsComponent } from './business/doctors/doctors.component';
+import { AppointmentsComponent } from './business/appointments/appointments.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,13 @@ export const routes: Routes = [
         component: DoctorsComponent,
         data: {
           breadcrumb: 'Liste des Medecins',
+        },
+      },
+       {
+        path: 'appointments',
+        component: AppointmentsComponent,
+        data: {
+          breadcrumb: 'Liste des Rendez-vous',
         },
       },
       {
