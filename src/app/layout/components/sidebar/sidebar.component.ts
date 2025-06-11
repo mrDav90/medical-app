@@ -53,6 +53,12 @@ export class SidebarComponent {
       icon: 'clock-circle',
       route: '/appointments',
     },
+     {
+      key: RESOURCES.BILLING,
+      title: 'Facturation',
+      icon: 'dollar',
+      route: '/billing',
+    },
     {
       title: 'Paramètres',
       icon: 'settings',

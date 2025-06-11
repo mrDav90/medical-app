@@ -7,6 +7,7 @@ import { UsersComponent } from './business/users/users.component';
 import { PatientsComponent } from './business/patients/patients.component';
 import { DoctorsComponent } from './business/doctors/doctors.component';
 import { AppointmentsComponent } from './business/appointments/appointments.component';
+import { BillingComponent } from './business/billing/billing.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,13 @@ export const routes: Routes = [
         component: AppointmentsComponent,
         data: {
           breadcrumb: 'Liste des Rendez-vous',
+        },
+      },
+      {
+        path: 'billing',
+        component: BillingComponent,
+        data: {
+          breadcrumb: 'Facturation',
         },
       },
       {
