@@ -15,6 +15,8 @@ import { ReloadButtonComponent } from '../../shared/components/reload-button/rel
 import { SearchBarComponent } from '../../shared/components/search-bar/search-bar.component';
 import { RESOURCES } from '../../shared/constants/resources.constants';
 import { SCOPES } from '../../shared/constants/scopes.constants';
+import { AddAppointmentComponent } from "../appointments/add-appointment/add-appointment.component";
+import { AppointmentResponse } from '../appointments/models/appointment-response';
 
 @Component({
   selector: 'app-patients',
@@ -30,7 +32,8 @@ import { SCOPES } from '../../shared/constants/scopes.constants';
     ReloadButtonComponent,
     SearchBarComponent,
     AddPatientComponent,
-  ],
+    AddAppointmentComponent
+],
   templateUrl: './patients.component.html',
   styleUrl: './patients.component.css',
 })
@@ -39,8 +42,10 @@ export class PatientsComponent implements OnInit {
   SCOPES = SCOPES;
   loading = false;
   open = false;
+  open1 = false;
   listPatients: PatientResponse[] = [];
   currentRecord: PatientResponse | null = null;
+  aptRecord: AppointmentResponse | null = null;
   private patientsService = inject(PatientsService);
   private modal = inject(NzModalService);
   router = inject(Router);
@@ -142,4 +147,10 @@ export class PatientsComponent implements OnInit {
     });
     this.getPatients();
   }
+
+  onCreateAppointment(patientId:string){
+    this.open1 = true;
+    this.aptRecord=null;
+  }
 }
+

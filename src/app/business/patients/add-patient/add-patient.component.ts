@@ -119,6 +119,7 @@ export class AddPatientComponent implements OnInit {
             },
             error: (error) => {
               this.loading = false;
+              this.message.error(error.error.message);
               console.log(error);
             },
             complete: () => {
@@ -138,6 +139,7 @@ export class AddPatientComponent implements OnInit {
             },
             error: (error) => {
               this.loading = false;
+              this.message.error(error.error.message);
               console.log(error);
             },
             complete: () => {
