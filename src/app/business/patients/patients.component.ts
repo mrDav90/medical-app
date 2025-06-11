@@ -33,7 +33,7 @@ import { AppointmentResponse } from '../appointments/models/appointment-response
     SearchBarComponent,
     AddPatientComponent,
     AddAppointmentComponent
-],
+  ],
   templateUrl: './patients.component.html',
   styleUrl: './patients.component.css',
 })
@@ -46,6 +46,7 @@ export class PatientsComponent implements OnInit {
   listPatients: PatientResponse[] = [];
   currentRecord: PatientResponse | null = null;
   aptRecord: AppointmentResponse | null = null;
+  patientId: string = '';
   private patientsService = inject(PatientsService);
   private modal = inject(NzModalService);
   router = inject(Router);
@@ -125,6 +126,10 @@ export class PatientsComponent implements OnInit {
     this.open = false;
   }
 
+   handleCancel1(): void {
+    this.open1 = false;
+  }
+
   onPageChange(pageIndex: number): void {
     this.pageNumber = pageIndex;
     this.router.navigate(['/patients'], {
@@ -151,6 +156,7 @@ export class PatientsComponent implements OnInit {
   onCreateAppointment(patientId:string){
     this.open1 = true;
     this.aptRecord=null;
+    this.patientId = patientId;
   }
 }
 

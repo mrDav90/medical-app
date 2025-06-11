@@ -15,16 +15,21 @@ import { CaslService } from '../../shared/services/casl/casl.service';
 import { AppointmentsService } from './appointments.service';
 import { AppointmentResponse } from './models/appointment-response';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
+import { AppointmentStatus } from './models/appointment-status';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-appointments',
   imports: [
+    CommonModule,
      NzModalModule,
      NzButtonModule,
      NzFlexModule,
      NzDividerModule,
      NzTableModule,
      NzDropDownModule,
+     NzTagModule,
      NzIconModule,
      ReloadButtonComponent,
      SearchBarComponent,
@@ -40,6 +45,7 @@ export class AppointmentsComponent {
     open = false;
     listAppointments: AppointmentResponse[] = [];
     currentRecord: AppointmentResponse | null = null;
+    patientId: string = "";
     private appointmentsService = inject(AppointmentsService);
     private modal = inject(NzModalService);
     router = inject(Router);
@@ -94,6 +100,7 @@ export class AppointmentsComponent {
     onUpdate(record: AppointmentResponse) {
       this.open = true;
       this.currentRecord = record;
+      this.patientId = record.patientId;
     }
   
     onDelete(id: string) {
@@ -142,4 +149,27 @@ export class AppointmentsComponent {
       this.getAppointments();
     }
 
+    displayTagForAppointmentStatus(status: AppointmentStatus): { text: string; color: string } {
+      let result: { text: string; color: string } = { text: '', color: '' };
+      switch (status) {
+        case AppointmentStatus.SCHEDULED:
+          result.text = 'En attente';
+          result.color = 'blue';
+          break;
+        case AppointmentStatus.COMPLETED:
+          result.text = 'Terminé';
+          result.color = 'green';
+          break;
+        case AppointmentStatus.CANCELLED:
+          result.text = 'Annulé';
+          result.color = 'red';
+          break;
+        default:
+          result.text = 'En attente';
+          result.color = 'blue';
+          break;
+      }
+
+      return result;
+    }
 }

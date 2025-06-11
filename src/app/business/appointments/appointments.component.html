@@ -29,6 +29,25 @@
   </ng-container>
 </nz-modal> -->
 
+<nz-modal
+  [(nzVisible)]="open"
+  nzTitle="{{ currentRecord ? 'Modifier' : 'Créer' }} un rendez-vous"
+  (nzOnCancel)="handleCancel()"
+  [nzFooter]="null"
+  nzWidth="50%"
+  [nzStyle]="{ top: '30px' }"
+  [nzBodyStyle]="{ overflow: 'auto', maxHeight: 'calc(100vh - 120px)' }"
+>
+  <ng-container *nzModalContent>
+    <app-add-appointment 
+      [currentRecord]="currentRecord"
+      (_onClose)="handleCancel()"
+      (_onRefresh)="onRefresh()"
+      [patientId]="patientId"
+    ></app-add-appointment>
+  </ng-container>
+</nz-modal>
+
 <nz-table
   #basicTable
   nzSize="small"
@@ -61,11 +80,14 @@
     <tr>
       <td>{{ data.appointmentNum }}</td>
       <td>
-       <!-- {{ data.appointmentDate | date:'M/d/yy, h:mm a' }} -->
-    </td>
+       {{ data.appointmentDate | date:'dd/MM/yy à HH:mm' }}
+      </td>
       <td>{{ data.patientName }}</td>
       <td>{{ data.doctorName }}</td>
-      <td>{{ data.status }}</td>
+      <td> 
+          <nz-tag [nzColor]="displayTagForAppointmentStatus(data.status).color" [nzBordered]="false">{{ displayTagForAppointmentStatus(data.status).text }}</nz-tag>
+
+      </td>
      
 
       <td>

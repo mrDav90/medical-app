@@ -50,7 +50,7 @@ export class SidebarComponent {
     {
       key: RESOURCES.APPOINTMENT,
       title: 'Rendez-vous',
-      icon: 'team',
+      icon: 'clock-circle',
       route: '/appointments',
     },
     {

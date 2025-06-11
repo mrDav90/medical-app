@@ -49,8 +49,9 @@ import { DoctorsService } from '../../doctors/doctors.service';
   templateUrl: './add-appointment.component.html',
   styleUrl: './add-appointment.component.css'
 })
-export class AddAppointmentComponent {
+export class AddAppointmentComponent implements OnInit {
 @Input() currentRecord: AppointmentResponse | null = null;
+@Input() patientId: string = "";
   @Output() _onClose = new EventEmitter();
   @Output() _onRefresh = new EventEmitter();
   loading = false;
@@ -81,15 +82,16 @@ export class AddAppointmentComponent {
   });
 
   ngOnInit(): void {
+    this.getDoctors();
     if (this.currentRecord) {
       this.addAppointmentForm.patchValue(this.currentRecord);
     }
-    this.getDoctors();
+    
   }
   getDoctors() {
       this.listDoctorsloading = true;
       this.doctorsService
-        ._getDoctors(0, 30)
+        ._getDoctors(1, 30)
         .subscribe({
           next: (data) => {
             this.listDoctors = data.content;
@@ -107,14 +109,17 @@ export class AddAppointmentComponent {
     }
   submitForm() {
     if (this.addAppointmentForm.valid) {
-      this.loading = true;
-      if (this.currentRecord) {
-         const payload:AppointmentRequest={
-          appointmentDate:new Date(this.addAppointmentForm.value.appointmentDate as Date),
-          reason:this.addAppointmentForm.value.reason as string,
-          doctorId:this.addAppointmentForm.value.doctorId as string,
-          patientId:'',
+      
+        const payload:AppointmentRequest={
+            appointmentDate:new Date(this.addAppointmentForm.value.appointmentDate as Date),
+            reason:this.addAppointmentForm.value.reason as string,
+            doctorId:this.addAppointmentForm.value.doctorId as string,
+            patientId: this.patientId,
         }
+
+        this.loading = true;
+      if (this.currentRecord) {
+         
         this.appointmentsService
           ._updateAppointment(
             this.currentRecord.id,
@@ -137,12 +142,6 @@ export class AddAppointmentComponent {
             },
           });
       } else {
-        const payload:AppointmentRequest={
-          appointmentDate:new Date(this.addAppointmentForm.value.appointmentDate as Date),
-          reason:this.addAppointmentForm.value.reason as string,
-          doctorId:this.addAppointmentForm.value.doctorId as string,
-          patientId:'',
-        }
         this.appointmentsService
           ._createAppointment(payload)
           .subscribe({
