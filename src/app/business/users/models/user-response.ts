@@ -5,5 +5,6 @@ export interface UserResponse {
     email: string;
     password: string;
     role: string;
+    realmRoles: string[];
     enabled: boolean;
 }

@@ -17,6 +17,7 @@ import { User } from '../../../shared/models/user';
 import { AuthService } from '../../../auth/services/auth.service';
 import { UserInfos } from '../../../auth/models/UserInfos';
 import { CaslService } from '../../../shared/services/casl/casl.service';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +28,7 @@ import { CaslService } from '../../../shared/services/casl/casl.service';
     NzDropDownModule,
     NzAvatarModule,
     NzAffixModule,
+    NzTagModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

@@ -11,6 +11,9 @@ import {
   FormControl,
   Validators,
   ReactiveFormsModule,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { RolesService } from '../roles.service';
@@ -50,10 +53,24 @@ export class AddRoleComponent implements OnInit {
   private message = inject(NzMessageService);
   private rolesService = inject(RolesService);
 
+  startsWithAppValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      
+      if (!control.value) {
+        return null;
+      }
+
+      const value: string = control.value;
+      const isValid = value.startsWith('app_');
+
+      return isValid ? null : { startsWithApp: true };
+    };
+  }
+
   addRoleForm = new FormGroup({
     name: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [Validators.required , this.startsWithAppValidator()],
     }),
     description: new FormControl<string>(''),
   });

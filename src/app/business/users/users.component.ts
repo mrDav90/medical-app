@@ -123,8 +123,8 @@ export class UsersComponent {
     this.router.navigate(['/users'], {
       queryParams: {
         page: pageIndex,
-        size: this.pageSize
-      }
+        size: this.pageSize,
+      },
     });
     this.getUsers();
   }
@@ -135,9 +135,21 @@ export class UsersComponent {
     this.router.navigate(['/users'], {
       queryParams: {
         page: this.pageNumber,
-        size: pageSize
-      }
+        size: pageSize,
+      },
     });
     this.getUsers();
+  }
+
+  getAppRoleName(roles: string[]): string {
+    for (let i = 0; i < roles.length; i++) {
+      const role = roles[i];
+
+      if (role.startsWith('app_')) {
+        return role;
+      }
+    }
+
+    return '';
   }
 }

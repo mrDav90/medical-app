@@ -49,6 +49,7 @@
       <th>Prénoms</th>
       <th>Nom</th>
       <th>Email</th>
+      <th>Rôle</th>
       <th></th>
     </tr>
   </thead>
@@ -58,6 +59,14 @@
       <td>{{ data.firstName }}</td>
       <td>{{ data.lastName }}</td>
       <td>{{ data.email }}</td>
+      <td>
+        <nz-tag
+          nzColor="blue"
+          style="text-transform: uppercase"
+          >
+          {{ getAppRoleName(data.realmRoles) }}
+        </nz-tag>
+      </td>
       <td>
         @if (can(SCOPES.UPDATE, RESOURCES.ACCOUNT)) {
         <button
